@@ -15,7 +15,7 @@ const Banner = () => {
             WORKOUT LIBRARY
           </p>
 
-          <h1 className="whitespace-nowrap text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-5xl">
+          <h1 className="whitespace-nowrap text-4xl font-black leading-tight text-white sm:text-5xl lg:text-5xl">
             TRAIN WITH INTENT. LOG
             <br />
             EVERY SET.
@@ -28,9 +28,7 @@ const Banner = () => {
 
           <a
             href="#library"
-            className="inline-flex items-center gap-2 rounded-lg bg-[#1687FF] px-6 py-3 text-sm font-bold tracking-wide text-white transition duration-300 hover:bg-[#3299FF] hover:shadow-[0_8px_25px_rgba(22,135,255,0.25)]"
-          >
-            <span className="text-base">→</span>
+            className="inline-flex items-center gap-2 rounded-lg bg-[#1687FF] px-6 py-3 text-sm font-bold tracking-wide text-white transition duration-300 hover:bg-[#3299FF] hover:shadow-[0_8px_25px_rgba(22,135,255,0.25)]">
             BROWSE WORKOUTS
           </a>
         </div>
