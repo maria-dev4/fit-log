@@ -1,18 +1,17 @@
-
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { usePlan } from "../context/PlanContext";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { plan, saved } = usePlan();
 
   return (
-    <div className="navbar bg-[#020B1C] px-4 md:px-8 lg:px-12 border-b border-[#123B70]">
-
-
-      <div className="navbar-start">
+    <div className="navbar bg-[#020B1C] border-b border-[#123B70] px-4">
+      <div className="navbar-start mx-auto w-full max-w-5xl">
         <div className="dropdown">
           <div
             tabIndex={0}
@@ -37,14 +36,14 @@ const Navbar = () => {
 
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-[#071A36] text-white rounded-box z-10 mt-3 w-52 p-2 shadow-xl border border-[#123B70]"
+            className="menu menu-sm dropdown-content z-10 mt-3 w-52 rounded-xl border border-[#123B70] bg-[#071A36] p-2 text-white shadow-xl"
           >
             <li>
               <Link
-                href="/workouts"
+                href="/"
                 className={
-                  pathname === "/workouts"
-                    ? "bg-yellow-400/10 border border-yellow-400/40 text-yellow-400"
+                  pathname === "/"
+                    ? "bg-[#1687FF]/10 text-[#4AA8FF]"
                     : "text-gray-300"
                 }
               >
@@ -57,7 +56,7 @@ const Navbar = () => {
                 href="/my-plan"
                 className={
                   pathname === "/my-plan"
-                    ? "bg-yellow-400/10 border border-yellow-400/40 text-yellow-400"
+                    ? "bg-[#1687FF]/10 text-[#4AA8FF]"
                     : "text-gray-300"
                 }
               >
@@ -67,33 +66,30 @@ const Navbar = () => {
           </ul>
         </div>
 
-
         <Link
           href="/"
-          className="flex items-center gap-2 text-xl font-bold text-white"
+          className="flex items-center gap-2 text-xl font-bold tracking-wide text-white"
         >
           <Image
-            src="/logo.png"
+            src="/logo_blue.png"
             alt="FITLOG Logo"
             width={36}
             height={36}
             className="object-contain"
           />
-
           <span>FITLOG</span>
         </Link>
       </div>
 
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-2">
-
           <li>
             <Link
-              href="/workouts"
+              href="/"
               className={`rounded-lg px-4 py-2 transition ${
-                pathname === "/workouts"
-                  ? "border border-yellow-400/40 bg-yellow-400/10 text-yellow-400"
-                  : "text-gray-300 hover:text-yellow-400"
+                pathname === "/"
+                  ? "border border-[#1687FF]/40 bg-[#1687FF]/10 text-[#4AA8FF]"
+                  : "text-gray-300 hover:text-[#4AA8FF]"
               }`}
             >
               Workouts
@@ -105,28 +101,36 @@ const Navbar = () => {
               href="/my-plan"
               className={`rounded-lg px-4 py-2 transition ${
                 pathname === "/my-plan"
-                  ? "border border-yellow-400/40 bg-yellow-400/10 text-yellow-400"
-                  : "text-gray-300 hover:text-yellow-400"
+                  ? "border border-[#1687FF]/40 bg-[#1687FF]/10 text-[#4AA8FF]"
+                  : "text-gray-300 hover:text-[#4AA8FF]"
               }`}
             >
               My Plan
             </Link>
           </li>
-
         </ul>
       </div>
 
+      <div className="navbar-end mx-auto w-full max-w-5xl gap-2">
+        <Link
+          href="/my-plan"
+          className="flex items-center gap-2 rounded-full bg-[#1687FF] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#3299FF]"
+        >
+          <span>Plan</span>
+          <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-white/15 px-1.5 text-xs font-bold text-white">
+            {plan.length}
+          </span>
+        </Link>
 
-      <div className="navbar-end gap-2">
-
-        <button className="btn btn-ghost text-white border border-[#3299FF] hover:bg-[#1687FF] hover:border-[#1687FF]">
-          Plan
-        </button>
-
-        <button className="btn bg-[#1687FF] text-white border-none hover:bg-[#3299FF] rounded-full px-5">
-          Saved
-        </button>
-
+        <Link
+          href="/my-plan"
+          className="flex items-center gap-2 rounded-full border border-[#3299FF] bg-transparent px-4 py-2 text-sm font-semibold text-white transition hover:border-[#4AA8FF] hover:bg-[#071A36]"
+        >
+          <span>Saved</span>
+          <span className="flex h-6 min-w-6 items-center justify-center rounded-full border border-[#3299FF] px-1.5 text-xs font-bold text-[#4AA8FF]">
+            {saved.length}
+          </span>
+        </Link>
       </div>
     </div>
   );

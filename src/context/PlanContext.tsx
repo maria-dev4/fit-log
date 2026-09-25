@@ -1,4 +1,3 @@
-
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
@@ -22,8 +21,8 @@ type Workout = {
 type PlanContextType = {
   plan: Workout[];
   saved: Workout[];
-  addToPlan: (workout: Workout) => void;
-  saveWorkout: (workout: Workout) => void;
+  addToPlan: (workout: Workout) => "added" | "duplicate" | "limit";
+  saveWorkout: (workout: Workout) => "saved" | "duplicate";
   removeFromPlan: (id: number) => void;
   removeFromSaved: (id: number) => void;
 };
@@ -35,23 +34,25 @@ export const PlanProvider = ({ children }: { children: ReactNode }) => {
   const [saved, setSaved] = useState<Workout[]>([]);
 
   const addToPlan = (workout: Workout) => {
-    setPlan((prev) => {
-      if (prev.some((item) => item.id === workout.id)) {
-        return prev;
-      }
+    if (plan.some((item) => item.id === workout.id)) {
+      return "duplicate";
+    }
 
-      return [...prev, workout];
-    });
+    if (plan.length >= 5) {
+      return "limit";
+    }
+
+    setPlan((prev) => [...prev, workout]);
+    return "added";
   };
 
   const saveWorkout = (workout: Workout) => {
-    setSaved((prev) => {
-      if (prev.some((item) => item.id === workout.id)) {
-        return prev;
-      }
+    if (saved.some((item) => item.id === workout.id)) {
+      return "duplicate";
+    }
 
-      return [...prev, workout];
-    });
+    setSaved((prev) => [...prev, workout]);
+    return "saved";
   };
 
   const removeFromPlan = (id: number) => {

@@ -189,19 +189,33 @@ const WorkoutDetails = () => {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <button
                 onClick={() => {
-                  addToPlan(workout);
-                  toast.success("Added to today's plan");
+                  const result = addToPlan(workout);
+
+                  if (result === "added") {
+                    toast.success("Added to today's plan");
+                  } else if (result === "duplicate") {
+                    toast.info("This workout is already in today's plan");
+                  } else {
+                    toast.error("Today's plan can have only 5 workouts");
+                  }
                 }}
-                className="btn border-none bg-[#1687FF] text-white hover:bg-[#3299FF]">
+                className="btn border-none bg-[#1687FF] text-white hover:bg-[#3299FF]"
+              >
                 Add to today&apos;s plan
               </button>
 
               <button
                 onClick={() => {
-                  saveWorkout(workout);
-                  toast.success("Saved for later");
+                  const result = saveWorkout(workout);
+
+                  if (result === "saved") {
+                    toast.success("Saved for later");
+                  } else {
+                    toast.info("This workout is already saved");
+                  }
                 }}
-                className="btn border-[#123B70] bg-transparent text-white hover:border-[#3299FF] hover:bg-[#071A36]">
+                className="btn border-[#123B70] bg-transparent text-white hover:border-[#3299FF] hover:bg-[#071A36]"
+              >
                 Save for later
               </button>
             </div>
