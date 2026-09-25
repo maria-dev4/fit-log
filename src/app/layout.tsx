@@ -32,9 +32,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <PlanProvider>
           <Navbar />
           {children}
-          
+
           <Footer />
-          <ToastContainer position="top-right" />
+          <ToastContainer
+            position="top-right"
+            toastClassName="!bg-[#071A36] !text-white !border !border-[#123B70]"
+          />
         </PlanProvider>
       </body>
     </html>
