@@ -30,7 +30,7 @@ const Banner = () => {
             href="#library"
             className="btn border-none bg-[#1687FF] text-white hover:bg-[#3299FF]"
           >
-            ⚡ BROWSE WORKOUTS
+            BROWSE WORKOUTS
           </a>
         </div>
       </div>

@@ -7,13 +7,13 @@ import Library from "../component/Library";
 export default function Home() {
   return (
     <>
-      <Navbar/>
+
       <Banner />
       <Library/>
 
 
 
-      <Footer />
+
     </>
   );
 }
